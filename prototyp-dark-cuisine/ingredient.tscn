@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfol0r6nss0q0"]
+
+[ext_resource type="Script" path="res://Ingredient.gd" id="1_esabr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kuopf"]
+size = Vector2(1, 12)
+
+[node name="Ingredient" type="Node2D"]
+script = ExtResource("1_esabr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9.5, -4)
+shape = SubResource("RectangleShape2D_kuopf")

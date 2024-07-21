@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://kq6vaesp0s50"]
+
+[ext_resource type="PackedScene" uid="uid://bfol0r6nss0q0" path="res://ingredient.tscn" id="1_6tdh0"]
+[ext_resource type="Texture2D" uid="uid://c40m1fmso40tu" path="res://img/apple.png" id="2_5os4x"]
+
+[node name="Apple" instance=ExtResource("1_6tdh0")]
+name = "\"Apple\""
+description = "\"My physician always tells me I need to eat healthier.\""
+stats = Array[String](["\"constitution+\""])
+types = Array[String](["\"solid\"", "\"fruit\""])
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_5os4x")
