@@ -16,7 +16,7 @@ position = Vector2(40, 55)
 scale = Vector2(0.75, 0.75)
 
 [node name="Pinecone" parent="Grid_Inventory" instance=ExtResource("3_u6nk4")]
-position = Vector2(123, 58)
+position = Vector2(119, 54)
 scale = Vector2(0.5, 0.5)
 
 [node name="Grid_Composite" type="ItemList" parent="."]
