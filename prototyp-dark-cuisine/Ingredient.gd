@@ -1,5 +1,5 @@
 class_name Ingredient
-extends Node2D
+extends Node
 
 @export var ing_name : String
 @export var description : String

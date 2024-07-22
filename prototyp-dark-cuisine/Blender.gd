@@ -1,10 +1,9 @@
-extends Node2D
+class_name Blender extends Node
 
-class_name Blender
 
-func combine(ingredients):
+func combine(ingredients: Array):
 	
-	var composite : Composite
+	var composite
 	composite.ingredients = ingredients
 	
 	#TODO control for different kinds of composites

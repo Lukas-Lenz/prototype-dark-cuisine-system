@@ -1,11 +1,26 @@
-extends Node
+class_name CookingTool extends Node
 
+@export var recipes : Dictionary
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func resolve_recipe(composite : Composite):
+	
+	
+	for rec_name in recipes:
+		
+		current_recipe = rec_name
+		still_needed = recipes[current_recipe]
+		available = composite.ingredients
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+		#first eliminate direct matches
+		for needed in still_needed:
+			
+			for ing in available:
+				
+				if(ing.name == needed):
+					available.erase(ing)
+					still_needed.erase(needed)	#TODO: does this break iteration?
+					break
+		
+		#then eliminate type matches
+		for needed in still_needed:
+			
