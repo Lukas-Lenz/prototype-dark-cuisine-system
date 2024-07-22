@@ -4,6 +4,13 @@ class_name Composite extends Node
 @export var types : Array[String]
 @export var stats : Array
 
+
+func reset():
+	ingredients.clear()
+	types.clear()
+	stats.clear()
+
+
 #simply combines all ingredient types, no doubles
 #TODO: resolve contradicting types (e.g. solid+liquid)
 func resolve_types():

@@ -10,6 +10,9 @@ extends Node2D
 var ingredients : Array
 var tools : Array
 
+var apple_scene = load("res://ingredient-scenes/Apple.tscn")
+var pinecone_scene = load("res://ingredient-scenes/Pinecone.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,36 +26,37 @@ func _process(delta):
 	var itext = "What I have lying here on the table is...\n"
 	
 	for ing in ingredients:
-		itext.append("\n")
-		itext.append(ing.ing_name + ": " + ing.description + "\n")
+		itext += "\n"
+		itext += ing.ing_name + ": " + ing.description + "\n"
 		
 		for st in ing.stats:
-			itext.append("Makes you " + st.x + st.y + "\n")
+			itext += "Makes you " #+ st + " by " + ing.stats[st] + "\n"
 		
 		for t in ing.types:
-			itext.append("It's " + t + "\n")
+			itext += "It's " + t + "\n"
 		
+	$Text_Ingredients.text = itext
 	
 	var ctext = "The sludge on this table consists of: "
 	
 	for ing in composite.ingredients:
-		ctext.append(ing.ing_name + " ")
+		ctext += ing.ing_name + " "
 	
 	$Text_Composite.text = ctext
 	
 
 
 func _on_button_blend_pressed():
-	composite.ingredients += ingredients
+	composite.reset()
+	composite.ingredients.append_array(ingredients)
 	ingredients.clear()
 
 
-func _on_button_separate_pressed():
-	pass # Replace with function body.
-
-
 func _on_button_cauldron_pressed():
-	pass # Replace with function body.
+	var recipe = $Cauldron.resolve_recipe(composite)
+	var res_text = "I created...\n"
+	res_text += recipe + "!"
+	$Text_Output.text = res_text
 
 
 func _on_button_grill_pressed():
@@ -60,12 +64,25 @@ func _on_button_grill_pressed():
 
 
 func _on_button_clear_pressed():
-	pass # Replace with function body.
+	ingredients.clear()
+	composite.reset()
 
 
 func _on_button_apple_pressed():
-	pass # Replace with function body.
+	for ing in ingredients:
+		if(ing.ing_name == "Apple"):
+			return
+	
+	var newapple = apple_scene.instantiate()
+	add_child(newapple)
+	ingredients.push_back(newapple)
 
 
 func _on_button_pinecone_pressed():
-	pass # Replace with function body.
+	for ing in ingredients:
+		if(ing.ing_name == "Pine Cone"):
+			return
+	
+	var newpc = pinecone_scene.instantiate()
+	add_child(newpc)
+	ingredients.push_back(newpc)
